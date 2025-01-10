@@ -25,6 +25,11 @@ const errorHandlerMiddleware = require("./mws/errorHandler.mw");
 
 const userRoute = require('./routes/user.routes')
 
+app.get("/", (req, res) => {
+  res.send(
+    `<h1>School Management System API docs </h1>  <a href="/api-docs">Documentation</a>`
+  );
+});
 
 app.use("/api/v1/user", userRoute);
 
