@@ -1,8 +1,13 @@
 const User = require('../managers/models/user.schema')
 const jwt = require("jsonwebtoken");
 const asyncHandler = require('express-async-handler');
+const { StatusCodes } = require("http-status-codes");
 const {createJWT} = require("../managers/token/jwt")
-
+const {
+  NotFoundError,
+  BadRequestError,
+  ConflictError,
+  UnauthenticatedError}= require("../errors")
 
 const createUser = asyncHandler(async (req, res) => {
   const { email } = req.body;
@@ -12,7 +17,7 @@ const createUser = asyncHandler(async (req, res) => {
     const token = createJWT(user.id, user.name);
     res.status(StatusCodes.CREATED).json({ user, token: token });
   } else {
-    throw new ConflictError("Email already Exists");
+    throw new ConflictError("Email already Exists")
   }
 });
 

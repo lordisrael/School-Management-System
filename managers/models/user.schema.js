@@ -4,14 +4,23 @@ const bcrypt = require("bcryptjs");
 const userSchema = new mongoose.Schema(
   {
     username: { type: String, required: true, unique: true },
-    email: {type: String, required: true, unique: true },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+      match: [
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+        "Please provide valid email",
+      ],
+    },
     password: { type: String, required: true },
     role: {
       type: String,
       enum: ["superadmin", "school_admin"],
       required: true,
     },
-    school: { type: mongoose.Schema.Types.ObjectId, ref: "School" }, // Optional: Only for school admins 
+    school: { type: mongoose.Schema.Types.ObjectId, ref: "School" }, // Optional: Only for school admins
   },
   { timestamps: true }
 );

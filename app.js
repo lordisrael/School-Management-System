@@ -26,7 +26,7 @@ const errorHandlerMiddleware = require("./mws/errorHandler.mw");
 const userRoute = require('./routes/user.routes')
 
 
-app.use("/api/v1/auth", userRoute);
+app.use("/api/v1/user", userRoute);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
