@@ -4,6 +4,7 @@ const app = express();
 
 const helmet = require("helmet");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const rateLimiter = require("express-rate-limit");
 
 const dbConnect = require("./connect/mongo");
@@ -19,11 +20,14 @@ app.use(
 app.use(express.json());
 app.use(helmet());
 app.use(cors());
+app.use(cookieParser());
 
 const notFoundMiddleware = require("./mws/notFound.mw");
 const errorHandlerMiddleware = require("./mws/errorHandler.mw");
 
 const userRoute = require('./routes/user.routes')
+const schoolRoute = require('./routes/school.routes')
+const classRoute = require("./routes/classrom.routes")
 
 app.get("/", (req, res) => {
   res.send(
@@ -31,7 +35,9 @@ app.get("/", (req, res) => {
   );
 });
 
-app.use("/api/v1/user", userRoute);
+app.use("/api/v1/auth", userRoute);
+app.use("/api/v1/school", schoolRoute);
+app.use("/api/v1/classroom", classRoute)
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
@@ -48,3 +54,5 @@ const start = async () => {
   }
 };
 start();
+
+

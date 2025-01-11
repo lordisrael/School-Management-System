@@ -20,7 +20,22 @@ const userSchema = new mongoose.Schema(
       enum: ["superadmin", "school_admin"],
       required: true,
     },
-    school: { type: mongoose.Schema.Types.ObjectId, ref: "School" }, // Optional: Only for school admins
+    school: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "School",
+      validate: {
+        validator: function (value) {
+          if (this.role === "school_admin" && !value) {
+            return false; // Invalid if no school is provided for superadmin
+          }
+          return true;
+        },
+        message: "School is required for school admin.",
+      },
+    },
+    refreshToken: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

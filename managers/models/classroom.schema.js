@@ -4,13 +4,9 @@ const classroomSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     capacity: { type: Number, required: true },
-    resources: { type: String }, // e.g., whiteboards, projectors
-    school: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "School",
-      required: true,
-    }, // School association
+    resources: [String], // e.g., whiteboards, projectors
     students: [{ type: mongoose.Schema.Types.ObjectId, ref: "Student" }], // Students enrolled in the classroom
+    createdBy:{ type: mongoose.Schema.Types.ObjectId, ref: "User" }
   },
   { timestamps: true }
 );
