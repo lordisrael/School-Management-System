@@ -22,13 +22,13 @@ const createClassroom = asyncHandler(async (req, res) => {
 
   // Get the school ID from the logged-in user's data
   const schoolId = req.user.school;
-  console.log(req.user);
+  //console.log(req.user);
 
   // Find the school and ensure it exists and belongs to the logged-in user
   const school = await School.findOne({
     _id: schoolId,
   });
-  console.log(school);
+  //console.log(school);
   if (!school) {
     throw new NotFoundError(
       "School not found or you do not have permission to add classrooms to this school."

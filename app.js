@@ -28,6 +28,8 @@ const errorHandlerMiddleware = require("./mws/errorHandler.mw");
 const userRoute = require('./routes/user.routes')
 const schoolRoute = require('./routes/school.routes')
 const classRoute = require("./routes/classrom.routes")
+const studentRoute = require("./routes/student.routes")
+
 
 app.get("/", (req, res) => {
   res.send(
@@ -38,6 +40,7 @@ app.get("/", (req, res) => {
 app.use("/api/v1/auth", userRoute);
 app.use("/api/v1/school", schoolRoute);
 app.use("/api/v1/classroom", classRoute)
+app.use("/api/v1/student", studentRoute)
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
