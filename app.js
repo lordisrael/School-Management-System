@@ -10,6 +10,11 @@ const rateLimiter = require("express-rate-limit");
 const dbConnect = require("./connect/mongo");
 const dotenv = require('./config/app.config')
 
+//swagger
+const swaggerUI = require("swagger-ui-express");
+const YAML = require("yamljs");
+const swaggerDocument = YAML.load("./swagger.yaml");  
+
 app.set("trust proxy", 1);
 app.use(
   rateLimiter({
@@ -25,6 +30,9 @@ app.use(cookieParser());
 const notFoundMiddleware = require("./mws/notFound.mw");
 const errorHandlerMiddleware = require("./mws/errorHandler.mw");
 
+
+
+
 const userRoute = require('./routes/user.routes')
 const schoolRoute = require('./routes/school.routes')
 const classRoute = require("./routes/classrom.routes")
@@ -36,6 +44,7 @@ app.get("/", (req, res) => {
     `<h1>School Management System API docs </h1>  <a href="/api-docs">Documentation</a>`
   );
 });
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 app.use("/api/v1/auth", userRoute);
 app.use("/api/v1/school", schoolRoute);

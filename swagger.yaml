@@ -1,0 +1,675 @@
+openapi: 3.0.0
+info:
+  title: School Management System
+  contact: {}
+  version: '1.0'
+servers:
+- url: https://school-management-system-wmlb.onrender.com/api/v1
+  variables: {}
+paths:
+  /school/register:
+    post:
+      tags:
+      - School
+      summary: Create School
+      operationId: CreateSchool
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateSchoolRequest'
+              - example:
+                  name: Greenfield High
+                  address: 123 Greenfield Street
+                  contactEmail: admin@greenfieldhigh.edu
+            example:
+              name: Greenfield High
+              address: 123 Greenfield Street
+              contactEmail: admin@greenfieldhigh.edu
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /school/get_all_schools:
+    get:
+      tags:
+      - School
+      summary: Get All School
+      operationId: GetAllSchool
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /school/get_a_school/{schoolId}:
+    parameters:
+      - in: path
+        name: schoolId
+        schema:
+          type: string
+        required: true
+        description: The school ID
+    get:
+      tags:
+      - School
+      summary: Get A particular School
+      operationId: GetAparticularSchool
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /school/update_school/{schoolId}:
+    parameters:
+      - in: path
+        name: schoolId
+        schema:
+          type: string
+        required: true
+        description: The school ID
+    patch:
+      tags:
+      - School
+      summary: Update particular School
+      operationId: UpdateparticularSchool
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateparticularSchoolRequest'
+              - example:
+                  address: 321 Greenfield Street
+            example:
+              address: 321 Greenfield Street
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /school/delete_school/{schoolId}:
+    parameters:
+      - in: path
+        name: schoolId
+        schema:
+          type: string
+        required: true
+        description: The school ID
+    delete:
+      tags:
+      - School
+      summary: Delete School
+      operationId: DeleteSchool
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /auth/login:
+    post:
+      tags:
+      - Auth
+      summary: Login User
+      operationId: LoginUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LoginUserRequest'
+              - example:
+                  email: lordisrael2@gmail.com
+                  password: loveiman
+            example:
+              email: lordisrael2@gmail.com
+              password: loveiman
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /auth/register:
+    post:
+      tags:
+      - Auth
+      summary: Register User
+      operationId: RegisterUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RegisterUserRequest'
+              - example:
+                  username: lordisrael1
+                  email: lordisrael2@gmail.com
+                  role: school_admin
+                  password: loveiman
+                  school: 6782573579eac9d4572f2063
+            example:
+              username: lordisrael1
+              email: lordisrael2@gmail.com
+              role: school_admin
+              password: loveiman
+              school: 6782573579eac9d4572f2063
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /classroom/register:
+    post:
+      tags:
+      - Classroom
+      summary: Create Classroom
+      operationId: CreateClassroom
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateClassroomRequest'
+              - example:
+                  name: Grade 11
+                  capacity: 20
+                  resources:
+                  - whiteboard
+                  - projector
+            example:
+              name: Grade 11
+              capacity: 20
+              resources:
+              - whiteboard
+              - projector
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /classroom/get_all_classroom:
+    get:
+      tags:
+      - Classroom
+      summary: Get All Classroom
+      operationId: GetAllClassroom
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /classroom/get_a_classroom/{classroomId}:
+    parameters:
+      - in: path
+        name: classroomId
+        schema:
+          type: string
+        required: true
+        description: The classroom ID
+    get:
+      tags:
+      - Classroom
+      summary: Get A particular classroom
+      operationId: GetAparticularclassroom
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /classroom/update_classroom/{classroomId}:
+    parameters:
+      - in: path
+        name: classroomId
+        schema:
+          type: string
+        required: true
+        description: The classroom ID
+    patch:
+      tags:
+      - Classroom
+      summary: Update Classroom
+      operationId: UpdateClassroom
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateClassroomRequest'
+              - example:
+                  capacity: 50
+            example:
+              capacity: 50
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /classroom/delete_classroom/{classroomId}:
+    parameters:
+      - in: path
+        name: classroomId
+        schema:
+          type: string
+        required: true
+        description: The classroom ID
+    delete:
+      tags:
+      - Classroom
+      summary: Delete Classroom
+      operationId: DeleteClassroom
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /classroom/{classroomId}/student/register:
+    parameters:
+      - in: path
+        name: classroomId
+        schema:
+          type: string
+        required: true
+        description: The classroom ID
+    post:
+      tags:
+      - Student
+      summary: Enroll Student
+      operationId: EnrollStudent
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/EnrollStudentRequest'
+              - example:
+                  firstName: Joseph
+                  lastName: Mojolaoluwa
+                  grades:
+                    Math: 85
+                  contactInformation: lord@gmail.com
+            example:
+              firstName: Joseph
+              lastName: Mojolaoluwa
+              grades:
+                Math: 85
+              contactInformation: lord@gmail.com
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /classroom/{classroomId}/get_all_students:
+    parameters:
+      - in: path
+        name: classroomId
+        schema:
+          type: string
+        required: true
+        description: The classroom ID
+    get:
+      tags:
+      - Student
+      summary: Get all student from particular classroom
+      operationId: Getallstudentfromparticularclassroom
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /classroom/{classroomId}/get_a_student/{studentId}:
+    parameters:
+      - in: path
+        name: classroomId
+        schema:
+          type: string
+        required: true
+        description: The classroom ID
+      - in: path
+        name: studentId
+        schema:
+          type: string
+        required: true
+        description: The student ID
+    get:
+      tags:
+      - Student
+      summary: Get A particular student from Classroom
+      operationId: GetAparticularfromClassroom
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /student/{studentId}:
+    parameters:
+      - in: path
+        name: studentId
+        schema:
+          type: string
+        required: true
+        description: The student ID
+    patch:
+      tags:
+      - Student
+      summary: Update Student
+      operationId: UpdateStudent
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateStudentRequest'
+              - example:
+                  contactInformation: lord2@gmail.com
+                  grades:
+                    Math: 80
+            example:
+              contactInformation: lord2@gmail.com
+              grades:
+                Math: 80
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /classroom/{classroomId}/student/{studentId}/transfer:
+    parameters:
+      - in: path
+        name: classroomId
+        schema:
+          type: string
+        required: true
+        description: The classroom ID
+      - in: path
+        name: studentId
+        schema:
+          type: string
+        required: true
+        description: The student ID
+    patch:
+      tags:
+      - Student
+      summary: Transfer a student
+      operationId: Transferastudent
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/TransferastudentRequest'
+              - example:
+                  newClassroomId: 6782f7605d811096bbf2c367
+            example:
+              newClassroomId: 6782f7605d811096bbf2c367
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /classroom/{classroomId}/student/{studentId}:
+    parameters:
+      - in: path
+        name: classroomId
+        schema:
+          type: string
+        required: true
+        description: The classroom ID
+      - in: path
+        name: studentId
+        schema:
+          type: string
+        required: true
+        description: The student ID
+    delete:
+      tags:
+      - Student
+      summary: Delete Student from classroom
+      operationId: DeleteStudentfromclassroom
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+components:
+  schemas:
+    CreateSchoolRequest:
+      title: CreateSchoolRequest
+      required:
+      - name
+      - address
+      - contactEmail
+      type: object
+      properties:
+        name:
+          type: string
+        address:
+          type: string
+        contactEmail:
+          type: string
+      example:
+        name: Greenfield High
+        address: 123 Greenfield Street
+        contactEmail: admin@greenfieldhigh.edu
+    UpdateparticularSchoolRequest:
+      title: UpdateparticularSchoolRequest
+      required:
+      - address
+      type: object
+      properties:
+        address:
+          type: string
+      example:
+        address: 321 Greenfield Street
+    LoginUserRequest:
+      title: LoginUserRequest
+      required:
+      - email
+      - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: lordisrael2@gmail.com
+        password: loveiman
+    RegisterUserRequest:
+      title: RegisterUserRequest
+      required:
+      - username
+      - email
+      - role
+      - password
+      - school
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        role:
+          type: string
+        password:
+          type: string
+        school:
+          type: string
+      example:
+        username: lordisrael1
+        email: lordisrael2@gmail.com
+        role: school_admin
+        password: loveiman
+        school: 6782573579eac9d4572f2063
+    CreateClassroomRequest:
+      title: CreateClassroomRequest
+      required:
+      - name
+      - capacity
+      - resources
+      type: object
+      properties:
+        name:
+          type: string
+        capacity:
+          type: integer
+          format: int32
+        resources:
+          type: array
+          items:
+            type: string
+          description: ''
+      example:
+        name: Grade 11
+        capacity: 20
+        resources:
+        - whiteboard
+        - projector
+    UpdateClassroomRequest:
+      title: UpdateClassroomRequest
+      required:
+      - capacity
+      type: object
+      properties:
+        capacity:
+          type: integer
+          format: int32
+      example:
+        capacity: 50
+    EnrollStudentRequest:
+      title: EnrollStudentRequest
+      required:
+      - firstName
+      - lastName
+      - grades
+      - contactInformation
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        grades:
+          $ref: '#/components/schemas/Grades'
+        contactInformation:
+          type: string
+      example:
+        firstName: Joseph
+        lastName: Mojolaoluwa
+        grades:
+          Math: 85
+        contactInformation: lord@gmail.com
+    Grades:
+      title: Grades
+      required:
+      - Math
+      type: object
+      properties:
+        Math:
+          type: integer
+          format: int32
+      example:
+        Math: 85
+    UpdateStudentRequest:
+      title: UpdateStudentRequest
+      required:
+      - contactInformation
+      - grades
+      type: object
+      properties:
+        contactInformation:
+          type: string
+        grades:
+          $ref: '#/components/schemas/Grades'
+      example:
+        contactInformation: lord2@gmail.com
+        grades:
+          Math: 80
+    TransferastudentRequest:
+      title: TransferastudentRequest
+      required:
+      - newClassroomId
+      type: object
+      properties:
+        newClassroomId:
+          type: string
+      example:
+        newClassroomId: 6782f7605d811096bbf2c367
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+- name: School
+- name: Auth
+- name: Classroom
+- name: Student
